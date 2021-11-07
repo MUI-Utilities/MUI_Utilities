@@ -1,0 +1,16 @@
+This is a part of the MUI Utility FSI Coupling Lab, python bind on iqnils 
+FSI coupling utility on MUI coupling library.
+
+Installation:
+
+### Install directly (option 1)
+``` bash
+make COMPILER=GCC cfsil4py_mod
+export PYTHONPATH=/work/c01/c01/wendiliu/app/MUI/MUI-1.1/couplingFSILab/wrappers/Python
+```
+
+### Create python package (option 2)
+``` bash
+make COMPILER=GCC package
+make pip-install # To install with pip the created package
+```
