@@ -1,4 +1,4 @@
-MUI Utility
+MUI Utilities
 
 Copyright (C) 2021 Engineering and Environment Group, Scientific 
 Computing Department, Science and Technology Facilities Council, 
@@ -16,4 +16,4 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-This folder contains the MUI Utility codes, includes the FSI Coupling Lab and the Code_Saturne MUI coupling method.
+This folder contains the Utility codes for MUI library (https://github.com/MxUI), includes the FSI Coupling Lab and the Code_Saturne MUI coupling method.
