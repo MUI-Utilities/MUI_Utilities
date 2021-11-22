@@ -41,7 +41,7 @@ SourceFiles
 #ifndef MUICOUPLINGAITKENCAPI_H
 #define MUICOUPLINGAITKENCAPI_H
 
-#include "mui_3d.h"
+#include "mui_c_wrapper_3d.h"
 #include <stdarg.h>
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
