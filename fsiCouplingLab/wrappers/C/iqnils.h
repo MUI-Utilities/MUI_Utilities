@@ -42,7 +42,7 @@ SourceFiles
 #ifndef MUICOUPLINGIQNILSCAPI_H
 #define MUICOUPLINGIQNILSCAPI_H
 
-#include "mui_3d.h"
+#include "mui_c_wrapper_3d.h"
 #include <stdarg.h>
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
