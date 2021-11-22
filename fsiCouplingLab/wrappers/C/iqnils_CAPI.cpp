@@ -39,7 +39,7 @@ Author
 
 #include "iqnils.h"
 #include "iqnils_inl.H"
-#include "mui_3d.h"
+#include "mui_c_wrapper_3d.h"
 #include <iostream>
 #include <stdarg.h>
 
