@@ -9,7 +9,7 @@ CICODEPATH = -I../../
 CIEIGENPATH = -I
 CIMUIPATH = -I${MUIPATH}/wrappers/C -I${MUIPATH}
 CLPATH = -L${MUIPATH} -L${MUIPATH}/wrappers/C
-CLNAME = -lwrapperC 
+CLNAME = -lmui_c_wrapper 
 LDFLAGS = -lstdc++
 
 
