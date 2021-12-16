@@ -372,8 +372,8 @@ class cs_compile(object):
                 cmd += ["-I", d]
             cmd.append('-DHAVE_CONFIG_H')
             if os.path.basename(f) == 'cs_base.c':
-                # cmd += ['-DLOCALEDIR=\\"' + pkg.get_dir('localedir') + '\\"', \
-                        # '-DPKGDATADIR=\\"' + pkg.get_dir('pkgdatadir') + '\\"']
+##                cmd += ['-DLOCALEDIR=\\"' + pkg.get_dir('localedir') + '\\"', \
+##                        '-DPKGDATADIR=\\"' + pkg.get_dir('pkgdatadir') + '\\"']
                 cmd += ['-DLOCALEDIR=\"' + pkg.get_dir('localedir') + '\"', \
                         '-DPKGDATADIR=\"' + pkg.get_dir('pkgdatadir') + '\"', \
                         '-DPKGLIBDIR=\"\"']

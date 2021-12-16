@@ -95,9 +95,9 @@ class config:
                         'metis', 'scotch',              # Partionning libraries
                         'mpi',                          # MPI
                         'blas',                         # BLAS (benchmark use)
-                        'system',                       # User & system libraries
                         'mui',                          # MUI
-                        'muicoupling ]                  # MUICoupling
+                        'muicoupling',                  # MUICoupling
+                        'system'                        # User & system libraries ]
 
         # Compilers, flags and special commands
 
@@ -314,6 +314,21 @@ class config:
                          flags = {'cppflags': "-I/path/to/scotch_6.1.0/include",
                                   'ldflags': "-L/path/to/scotch_6.1.0/lib",
                                   'libs': "-lptscotch -lscotch -lm"})
+
+        self.libs['mui'] = \
+            prerequisite("MUI",
+                         have = "yes",
+                         flags = {'cppflags': "-I/path_to_MUI -DHAVE_MUI",
+                                  'ldflags': "-L/path_to_MUI/wrappers/C",
+                                  'libs': "-lwrapperC -lstdc++"})
+
+        self.libs['muicoupling'] = \
+            prerequisite("muicoupling",
+                         have = "yes",
+                         flags = {'cppflags': "-I/path_to_MUI_Utility/couplingFSILab/wrappers/C -I/path_to_MUI/couplingFSILab -I/path/to/MUI -DHAVE_MUI",
+                                  'ldflags': "-L/path_to_MUI_Utility/couplingFSILab/wrappers/C -L/path_to_MUI/couplingFSILab -L/path/to/MUI/wrappers/C",
+                                  'libs': "-lwrapperC -lmuiCouplingMethodsCAPI -lstdc++"})
+
 
     def __get_search_paths_catalyst__(self):
         """
