@@ -15,17 +15,20 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This folder contains the instructions to adapt Code_Saturne to handle the MUI Coupling.
 
-This folder contains the Code_Saturne MUI coupling method.
+## Compile Code_Saturne (V6.0.6) with MUI (V1.1.3)
 
-## Compile Code_Saturne (v6.0.6) with MUI (v1.1.2)
-To compile Code_Saturne with MUI, the equivalent of the enclosed files (cs_config.py and cs_compile.py) need to be modified after the installation of Code_Saturne.
+To get Code_Saturne working with MUI, it is **CRUCIAL** to install Code_Saturne first, and modify files in the installed version.
 
-Please note that these files are written to the machine at installation time and will depend on how the machine is set up. The files found on the machine have to be modified and ** do not copy ** the files directly into the site-packages/code_saturne directory, otherwise Code_Saturne will not compile.
+The 2 files are to be found under **your_own_path/lib/python3.x/site-packages/code_saturne/** directory, where 3.x is the
+version of Python you have used to install Code_Saturne.
 
-Both cs_config.py and cs_compile.py files can be found in the lib/python3.x/site-packages/code_saturne directory of the Code_Saturne installation on the machine.
+The 2 files are *cs_compile.py* and *cs_config.py*.
 
-In cs_compile.py replace the following commented lines with the uncommented lines.
+In *cs_compile.py*, the following commented lines are replaced by the uncommented lines to account for -DPKGLIBDIR. It happens
+at **Line 375 (L375)** for this version of Code_Saturne.
+
 
 ```bash
 #                cmd += ['-DLOCALEDIR=\\"' + pkg.get_dir('localedir') + '\\"', \
@@ -34,33 +37,33 @@ In cs_compile.py replace the following commented lines with the uncommented line
                         '-DPKGDATADIR=\"' + pkg.get_dir('pkgdatadir') + '\"', \
                         '-DPKGLIBDIR=\"\"']
 ```
-In the cs_config.py, define the dependency add the 'MUI' and "MUICoupling" item after 'system'.
+In *cs_config.py*, 2 operations are required. First, 'mui' and 'muicoupling are added to the list of dependencies after 'system',
+after **Line 98 (L98)**.
 
 ```bash
-self.deplibs = [ .... 'system', 'mui', ''muicoupling'' ]
+self.deplibs = [ ....,
+                 ....,
+                 'mui',                          # MUI
+                 'muicoupling',                  # MUICoupling
+                 'system'                        # User & system libraries ]
 ```
 
-Add the flags and the links to the 'MUI' and "MUICoupling"  self libs for the correct flags for your installation of MUI and MUI_Utility.
+Some information has to be added to *cs_config.py*. It is done by adding some *self.libs* for 'MUI' and "MUICoupling", after the settings for scotch, and reads as follows, starting from **Line 318 (L318)** (this is accounting for the 2 extra lines added in *self.deplibs*. **path_to_MUI** and **path_to_MUI_Utility** depend on your own installation and need to be adapted
 
 ```bash
-        # Setup MUI
-
         self.libs['mui'] = \
             prerequisite("MUI",
                          have = "yes",
-                         flags = {'cppflags': "-I/path/to/MUI -DHAVE_MUI",
-                                  'ldflags': "-L/path/to/MUI/wrappers/C",
+                         flags = {'cppflags': "-I/path_to_MUI -DHAVE_MUI",
+                                  'ldflags': "-L/path_to_MUI/wrappers/C",
                                   'libs': "-lwrapperC -lstdc++"})
-
-        # Setup muicoupling
 
         self.libs['muicoupling'] = \
             prerequisite("muicoupling",
                          have = "yes",
-                         flags = {'cppflags': "-I/path/to/MUI_Utility/couplingFSILab/wrappers/C -I/path/to/MUI/couplingFSILab -I/path/to/MUI -DHAVE_MUI",
-                                  'ldflags': "-L/path/to/MUI_Utility/couplingFSILab/wrappers/C -L/path/to/MUI/couplingFSILab -L/path/to/MUI/wrappers/C",
+                         flags = {'cppflags': "-I/path_to_MUI_Utility/couplingFSILab/wrappers/C -I/path_to_MUI/couplingFSILab -I/path_to_MUI -DHAVE_MUI",
+                                  'ldflags': "-L/path_to_MUI_Utility/couplingFSILab/wrappers/C -L/path_to_MUI/couplingFSILab -L/path_to_MUI/wrappers/C",
                                   'libs': "-lwrapperC -lmuiCouplingMethodsCAPI -lstdc++"})
-
 ```
 
-This folder contains the demo cs_config.py and cs_compile.py files as an example.
+An example of how this 2 files are changed is to be found in (cs_compile_py_example)![https://github.com/MUI-Utilities/MUI_Utilities/blob/main/Code_Saturne_MUI_Coupling/cs_compile_py_example] and (cs_config_py_example)![https://github.com/MUI-Utilities/MUI_Utilities/blob/main/Code_Saturne_MUI_Coupling/cs_config_py_example]. Note that these files are shown as examples and need to be tailored for your own installation of Code_Saturne.
