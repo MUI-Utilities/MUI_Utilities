@@ -96,8 +96,8 @@ class config:
                         'mpi',                          # MPI
                         'blas',                         # BLAS (benchmark use)
                         'system',                       # User & system libraries
-                        'mui',                          # Define MUI libraries
-                        'muicoupling']                  # Define MUI_Utility libraries
+                        'mui',                          # MUI
+                        'muicoupling ]                  # MUICoupling
 
         # Compilers, flags and special commands
 
@@ -112,7 +112,7 @@ class config:
                       'fcflags': "-x f95-cpp-input -Wall -pedantic-errors -std=f2003 -fdiagnostics-color=auto -O3 -fopenmp -g -fcheck=bounds "}
 
         self.fcmodinclude = "-I"
-        self.rpath = "-Wl,-rpath -Wl,/opt/gcc/10.1.0/snos/lib/gcc/x86_64-suse-linux/10.1.0/../../../../lib64/opt/gcc/10.1.0/snos/lib/gcc/x86_64-suse-linux/10.1.0/../../../../lib64"
+        self.rpath = "-Wl,-rpath -Wl,/opt/gcc/10.2.0/snos/lib/gcc/x86_64-suse-linux/10.2.0/../../../../lib64/opt/gcc/10.2.0/snos/lib/gcc/x86_64-suse-linux/10.2.0/../../../../lib64"
         self.special_user_link = ""
 
         # Constants for system-dependant file extensions
@@ -132,7 +132,7 @@ class config:
 
         # Python-related information
 
-        self.python = "/opt/cray/pe/python/3.8.5.0/bin/python"
+        self.python = "/path/to/python"
         self.pyuic4 = ""
         self.pyrcc4 = ""
         self.pyuic5 = ""
@@ -141,7 +141,7 @@ class config:
         # Execution environment
 
         self.env_modules = "no"
-        self.env_modulecmd = "/usr/local/Modules/bin/modulecmd"
+        self.env_modulecmd = "/usr/share/lmod/lmod/libexec/lmod"
 
         # SALOME-related information
 
@@ -188,23 +188,6 @@ class config:
                          flags = {'cppflags': "",
                                   'ldflags': "",
                                   'libs': "-lple"})
-        # Setup MUI
-
-        self.libs['mui'] = \
-            prerequisite("MUI",
-                         have = "yes",
-                         flags = {'cppflags': "-I/path/to/MUI -DHAVE_MUI",
-                                  'ldflags': "-L/path/to/MUI/wrappers/C",
-                                  'libs': "-lwrapperC -lstdc++"})
-
-        # Setup muicoupling
-
-        self.libs['muicoupling'] = \
-            prerequisite("muicoupling",
-                         have = "yes",
-                         flags = {'cppflags': "-I/path/to/MUI_Utility/couplingFSILab/wrappers/C -I/path/to/MUI/couplingFSILab -I/path/to/MUI -DHAVE_MUI",
-                                  'ldflags': "-L/path/to/MUI_Utility/couplingFSILab/wrappers/C -L/path/to/MUI/couplingFSILab -L/path/to/MUI/wrappers/C",
-                                  'libs': "-lwrapperC -lmuiCouplingMethodsCAPI -lstdc++"})
 
         # Setup user and system libraries
 
@@ -213,16 +196,16 @@ class config:
                          have = "yes",
                          flags = {'cppflags': "  -D_POSIX_C_SOURCE=200809L -DDEBUG ",
                                   'ldflags': "  -g -Wl,-export-dynamic -fopenmp ",
-                                  'libs': " -lz   -ldl  -L/opt/cray/pe/libsci/20.10.1.2/GNU/9.1/x86_64/lib -L/opt/cray/pe/dsmml/0.1.2/dsmml//lib -L/opt/cray/pe/mpich/8.0.16/ofi/gnu/9.1/lib -L/opt/cray/xpmem/2.2.35-7.0.1.0_1.9__gd50fabf.shasta/lib64 -L/opt/gcc/10.1.0/snos/lib/gcc/x86_64-suse-linux/10.1.0 -L/opt/gcc/10.1.0/snos/lib/gcc/x86_64-suse-linux/10.1.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/opt/gcc/10.1.0/snos/lib/gcc/x86_64-suse-linux/10.1.0/../../.. -lsci_gnu_82_mpi -lsci_gnu_82 -ldl -lxpmem -ldsmml -lmpi_gnu_91 -lmpifort_gnu_91 -lgfortran -lquadmath -lpthread -lm"})
+                                  'libs': " -lz   -ldl  -L/opt/cray/pe/mpich/8.1.9/ucx/gnu/9.1/lib -L/opt/cray/pe/libsci/21.04.1.1/GNU/9.1/x86_64/lib -L/opt/cray/xpmem/2.2.40-7.0.1.0_2.7__g1d7a24d.shasta/lib64 -L/opt/gcc/10.2.0/snos/lib/gcc/x86_64-suse-linux/10.2.0 -L/opt/gcc/10.2.0/snos/lib/gcc/x86_64-suse-linux/10.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/opt/gcc/10.2.0/snos/lib/gcc/x86_64-suse-linux/10.2.0/../../.. -lmpifort_gnu_91 -lmpi_gnu_91 -lsci_gnu_82_mpi -lsci_gnu_82 -ldl -lxpmem -lgfortran -lquadmath -lpthread -lm"})
 
         # Setup the optionnal libraries
 
         self.libs['blas'] = \
             prerequisite("BLAS",
-                         have = "no",
-                         flags = {'cppflags': "",
-                                  'ldflags': "",
-                                  'libs': ""})
+                         have = "yes",
+                         flags = {'cppflags': "-I/opt/cray/pe/libsci/21.04.1.1/GNU/9.1/x86_64/include",
+                                  'ldflags': "-L/opt/cray/pe/libsci/21.04.1.1/GNU/9.1/x86_64/lib",
+                                  'libs': "-lsci_gnu"})
 
         self.libs['ccm'] = \
             prerequisite("CCM",
@@ -328,8 +311,8 @@ class config:
         self.libs['scotch'] = \
             prerequisite("SCOTCH",
                          have = "yes",
-                         flags = {'cppflags': "-I/path/to/scotch_6.0.10/include",
-                                  'ldflags': "-L/path/to/scotch_6.0.10/lib",
+                         flags = {'cppflags': "-I/path/to/scotch_6.1.0/include",
+                                  'ldflags': "-L/path/to/scotch_6.1.0/lib",
                                   'libs': "-lptscotch -lscotch -lm"})
 
     def __get_search_paths_catalyst__(self):
