@@ -66,4 +66,4 @@ Some information has to be added to *cs_config.py*. It is done by adding some *s
                                   'libs': "-lwrapperC -lmuiCouplingMethodsCAPI -lstdc++"})
 ```
 
-An example of how this 2 files are changed is to be found in (cs_compile_py_example)![https://github.com/MUI-Utilities/MUI_Utilities/blob/main/Code_Saturne_MUI_Coupling/cs_compile_py_example] and (cs_config_py_example)![https://github.com/MUI-Utilities/MUI_Utilities/blob/main/Code_Saturne_MUI_Coupling/cs_config_py_example]. Note that these files are shown as examples and need to be tailored for your own installation of Code_Saturne.
+An example of how this 2 files are changed is to be found in [https://github.com/MUI-Utilities/MUI_Utilities/blob/main/Code_Saturne_MUI_Coupling/cs_compile_py_example](cs_compile_py_example) and [https://github.com/MUI-Utilities/MUI_Utilities/blob/main/Code_Saturne_MUI_Coupling/cs_config_py_example](cs_config_py_example). Note that these files are shown as examples and need to be tailored for your own installation of Code_Saturne.
