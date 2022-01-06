@@ -61,8 +61,8 @@ Some information has to be added to *cs_config.py*. It is done by adding some *s
         self.libs['muicoupling'] = \
             prerequisite("muicoupling",
                          have = "yes",
-                         flags = {'cppflags': "-I/path_to_MUI_Utility/couplingFSILab/wrappers/C -I/path_to_MUI/couplingFSILab -I/path_to_MUI -DHAVE_MUI",
-                                  'ldflags': "-L/path_to_MUI_Utility/couplingFSILab/wrappers/C -L/path_to_MUI/couplingFSILab -L/path_to_MUI/wrappers/C",
+                         flags = {'cppflags': "-I/path_to_MUI_Utility/fsiCouplingLab/wrappers/C -I/path_to_MUI/fsiCouplingLab -I/path_to_MUI -DHAVE_MUI",
+                                  'ldflags': "-L/path_to_MUI_Utility/fsiCouplingLab/wrappers/C -L/path_to_MUI/fsiCouplingLab -L/path_to_MUI/wrappers/C",
                                   'libs': "-lwrapperC -lmuiCouplingMethodsCAPI -lstdc++"})
 ```
 
