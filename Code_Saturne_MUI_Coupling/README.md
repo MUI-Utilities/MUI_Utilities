@@ -45,7 +45,7 @@ self.deplibs = [ ....,
                  ....,
                  'mui',                          # MUI
                  'muicoupling',                  # MUICoupling
-                 'system'                        # User & system libraries ]
+                 'system']                       # User & system libraries
 ```
 
 Some information has to be added to *cs_config.py*. It is done by adding some *self.libs* for 'MUI' and "MUICoupling", after the settings for scotch, and reads as follows, starting from **Line 318 (L318)** (this is accounting for the 2 extra lines added in *self.deplibs*. **path_to_MUI** and **path_to_MUI_Utility** depend on your own installation and need to be adapted
