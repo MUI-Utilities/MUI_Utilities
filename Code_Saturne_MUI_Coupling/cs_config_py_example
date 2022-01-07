@@ -320,7 +320,7 @@ class config:
                          have = "yes",
                          flags = {'cppflags': "-I/path_to_MUI -DHAVE_MUI",
                                   'ldflags': "-L/path_to_MUI/wrappers/C",
-                                  'libs': "-lwrapperC -lstdc++"})
+                                  'libs': "-lmui_c_wrapper -lstdc++"})
 
         self.libs['muicoupling'] = \
             prerequisite("muicoupling",
