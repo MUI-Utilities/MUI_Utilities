@@ -327,7 +327,7 @@ class config:
                          have = "yes",
                          flags = {'cppflags': "-I/path_to_MUI_Utility/couplingFSILab/wrappers/C -I/path_to_MUI/couplingFSILab -I/path/to/MUI -DHAVE_MUI",
                                   'ldflags': "-L/path_to_MUI_Utility/couplingFSILab/wrappers/C -L/path_to_MUI/couplingFSILab -L/path/to/MUI/wrappers/C",
-                                  'libs': "-lwrapperC -lmuiCouplingMethodsCAPI -lstdc++"})
+                                  'libs': "-lmui_c_wrapper -lmuiCouplingMethodsCAPI -lstdc++"})
 
 
     def __get_search_paths_catalyst__(self):
